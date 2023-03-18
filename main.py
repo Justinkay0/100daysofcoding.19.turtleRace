@@ -1,16 +1,32 @@
-# This is a sample Python script.
+import turtle
+import random
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+screen = turtle.Screen()
+screen.setup(width=500, height=400)
+user_choice = screen.textinput(title='Make your bet', prompt='Which turtle color would you choose to win?')
+colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
+turtle_list = []
 
+for i in range(6):
+    t = turtle.Turtle(shape='turtle')
+    t.color(colors[i])
+    t.penup()
+    t.setposition(x=-230, y=-100 + ((i + 1) * 40))
+    turtle_list.append(t)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+8 to toggle the breakpoint.
+if user_choice:
+    game_running = True
 
+while game_running:
+    for turt in turtle_list:
+        if turt.xcor() >= 230:
+            game_running = False
+            if turt.pencolor() == user_choice.lower():
+                print(f"You are a winner!! the winning turtle is {turt.pencolor()} in color")
+            else:
+                print(f"You are a loser!! the winning turtle is {turt.pencolor()} in color")
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+        turt.forward(random.randint(0, 10))
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+screen.exitonclick()
+
