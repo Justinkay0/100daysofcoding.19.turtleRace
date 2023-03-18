@@ -14,6 +14,7 @@ for i in range(6):
     t.setposition(x=-230, y=-100 + ((i + 1) * 40))
     turtle_list.append(t)
 
+game_running = False
 if user_choice:
     game_running = True
 
@@ -29,4 +30,3 @@ while game_running:
         turt.forward(random.randint(0, 10))
 
 screen.exitonclick()
-
